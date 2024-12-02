@@ -1,7 +1,10 @@
 package service
 
-import "gRPC/internal/pb"
-import "gRPC/internal/pb"
+import (
+	"context"
+	"gRPC/internal/pb"
+	"gRPC/internal/database"
+)
 
 type CategoryService struct {
 	pb.UnimplementedCategoryServiceServer
@@ -23,10 +26,10 @@ func (c *CategoryService) CreateCategory(ctx context.Context, in *pb.CreateCateg
 	categoryResponse := &pb.Category{
 		Id: category.ID,
 		Name: category.Name,
-		Description: category.Description
+		Description: category.Description,
 	}
 
 	return &pb.CategoryResponse{
-		Category: categoryResponse
+		Category: categoryResponse,
 	}, nil
 }
